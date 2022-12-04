@@ -16,23 +16,10 @@ function makeGallery() {
   gallery.insertAdjacentHTML("afterbegin", images);
 }
 
-gallery.addEventListener("click", selectImage);
-
-function selectImage(event) {
-  event.preventDefault();
-  if (event.target.nodeName !== "IMG") {
-    return;
-  }
-  const instance = new SimpleLightbox(".gallery a", {
-    captions: true,
-    captionSelector: "img",
-    captionType: "attr",
-    captionsData: "alt",
-    captionDelay: 250,
-  });
-  instance.open();
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") instance.close();
-  });
-}
+let lightbox = new SimpleLightbox(`.gallery a`, {
+  captions: true,
+  captionSelector: "img",
+  captionType: "attr",
+  captionsData: "alt",
+  captionDelay: 250,
+});
